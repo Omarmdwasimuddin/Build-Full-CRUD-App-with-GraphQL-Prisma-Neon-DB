@@ -1,1 +1,1 @@
-# Build-Full-CRUD-App-with-GraphQL-Prisma-Neon-DB
+## Build Full CRUD App with GraphQL, Prisma & Neon DB
