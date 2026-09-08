@@ -61,6 +61,25 @@ npx prisma generate
 ---
 
 
+#### Create module, service & resolver
+```bash 
+nest g module prisma
+```
+```bash
+nest g service prisma
+```
+```bash
+nest g module books
+```
+```bash
+nest g service books
+```
+```bash
+nest g resolver books
+```
+---
+
+
 #### ``
 ```bash
 
