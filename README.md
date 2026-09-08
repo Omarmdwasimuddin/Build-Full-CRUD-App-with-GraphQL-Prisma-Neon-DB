@@ -26,3 +26,31 @@ npx prisma init
 DATABASE_URL="postgresql://user:password@ep-crimson-river-a1jhbuwa-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
 ```
 ---
+
+
+#### `schema.prisma`
+```bash
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+model Book {
+  id String @id @default(uuid())
+  title String
+  author String
+  createdAt DateTime @default(now())
+}
+```
+---
+
+#### ``
+```bash
+
+```
+---
