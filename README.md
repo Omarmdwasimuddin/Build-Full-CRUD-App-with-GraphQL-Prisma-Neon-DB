@@ -20,3 +20,9 @@ npx prisma init
 
 >#### Neon e project create koro and then database connect koro-
 <img width="1597" height="762" alt="image" src="https://github.com/user-attachments/assets/ec4be945-6633-4d24-9e3d-aad07c5b4c7c" />
+
+#### `.env`
+```bash
+DATABASE_URL="postgresql://user:password@ep-crimson-river-a1jhbuwa-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+```
+---
