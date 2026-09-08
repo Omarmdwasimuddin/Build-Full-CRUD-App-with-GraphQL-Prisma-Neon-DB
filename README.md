@@ -56,6 +56,8 @@ npx prisma migrate dev --name init
 ```bash
 npx prisma generate
 ```
+<img width="1350" height="351" alt="image" src="https://github.com/user-attachments/assets/bb6a3b9d-7827-406c-9d79-cf6adf144d22" />
+
 ---
 
 
