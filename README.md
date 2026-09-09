@@ -237,8 +237,104 @@ export class BooksService {
 ---
 
 
+#### `books.resolver.ts`
+```bash
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Book } from './model/book.model';
+import { BooksService } from './books.service';
+import { CreateBookInput } from './dto/create-book.input';
+import { UpdateBookInput } from './dto/update-book.input';
+
+@Resolver(() => Book)
+export class BooksResolver {
+    constructor(private readonly booksService: BooksService) {}
+
+    // Define your GraphQL queries and mutations here
+
+    @Query(() => [Book])
+    getAllBooks() {
+        return this.booksService.findAll();
+    }
+
+    @Query(() => Book)
+    getBookById(@Args('id')id: string) {
+        return this.booksService.findOne(id);
+    }
+
+    @Mutation(() => Book)
+    createBook(@Args('input') input: CreateBookInput) {
+        return this.booksService.create(input);
+    }
+
+    @Mutation(() => Book)
+    updateBook(@Args('input') input: UpdateBookInput) {
+        return this.booksService.update(input);
+    }
+
+    @Mutation(() => Book)
+    deleteBook(@Args('id') id: string) {
+        return this.booksService.remove(id);
+    }
+
+}
+```
+---
+
+>#### localhost:3000/graphql
+
 #### ``
 ```bash
-
+ mutation{
+ createBook(input:{
+     title: "PrismaORM for delete",
+     author: "Wasim Uddin"
+   }){
+     id
+     title
+   }
+ }
 ```
+```bash
+ query {
+   getAllBooks {
+     id
+     title
+     author
+   }
+ }
+```
+```bash
+ mutation {
+   updateBook(input:{
+     id:"9ef7090b-28b3-40ff-89d7-0123d45ba639"
+     title: "PrismaORM Updated",
+     author: "Wasim Updated author"
+   }){
+     title
+   }
+ }
+```
+```bash
+mutation {
+  deleteBook(id: "dd78234b-2241-4ce3-ab97-f670fce9096a"){
+  title
+  }
+}
+```
+```bash
+query{
+  getBookById(id:"a36953c8-f6b1-46b5-bac1-34c0fc0ecfa5"){
+    title
+    author
+  }
+}
+```
+---
+
+
+>## OUTPUT
+<img width="1599" height="765" alt="image" src="https://github.com/user-attachments/assets/41fab662-087f-491c-be61-7b9715455f2a" />
+
+<img width="1350" height="341" alt="image" src="https://github.com/user-attachments/assets/927c2d05-738c-4f90-b408-ab430cb17105" />
+
 ---
