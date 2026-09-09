@@ -2,7 +2,7 @@
 
 #### GraphQL installation
 ```bash
-npm i @nestjs/graphql @nestjs/apollo @apollo/server @as-integrations/express5 graphql
+npm i @nestjs/graphql@^13 @nestjs/apollo@13.1.0 @apollo/server@^4.10.0 @as-integrations/express5 graphql
 ```
 ---
 
