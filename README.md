@@ -282,7 +282,6 @@ export class BooksResolver {
 
 >#### localhost:3000/graphql
 
-#### ``
 ```bash
  mutation{
  createBook(input:{
