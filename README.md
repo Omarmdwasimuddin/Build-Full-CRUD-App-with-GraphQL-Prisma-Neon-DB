@@ -101,10 +101,138 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
 ```
 ---
 
+>#### app.module.ts e add koro-
+<img width="1077" height="238" alt="image" src="https://github.com/user-attachments/assets/29e28f89-ad93-4bb7-b2a6-381e2bf49bd5" />
 
 #### ``
 ```bash
 
+```
+---
+
+
+#### `create-book.input.ts`
+```bash
+import { InputType, Field } from "@nestjs/graphql";
+@InputType()
+export class CreateBookInput {
+    @Field()
+    title: string;
+
+    @Field()
+    author: string;
+}
+```
+---
+
+
+#### `update-book.input.ts`
+```bash
+import { InputType, Field, PartialType } from "@nestjs/graphql";
+import { CreateBookInput } from "./create-book.input";
+@InputType()
+export class UpdateBookInput extends PartialType(CreateBookInput) {
+    @Field()
+    id: string;
+}
+```
+---
+
+>#### prisma.module.ts file e add koro- exports: [PrismaService],
+
+#### `prisma.module.ts`
+```bash
+import { Module } from '@nestjs/common';
+import { PrismaService } from './prisma.service';
+
+@Module({
+  providers: [PrismaService],
+  exports: [PrismaService],
+})
+export class PrismaModule {}
+```
+---
+
+>#### books.module.ts e add koro- imports: [PrismaModule],
+
+#### `books.module.ts`
+```bash
+import { Module } from '@nestjs/common';
+import { BooksService } from './books.service';
+import { BooksResolver } from './books.resolver';
+import { PrismaModule } from 'src/prisma/prisma.module';
+
+@Module({
+  imports: [PrismaModule],
+  providers: [BooksService, BooksResolver]
+})
+export class BooksModule {}
+```
+---
+
+
+#### `book.model.ts`
+```bash
+import { ObjectType, Field } from "@nestjs/graphql";
+
+@ObjectType()
+export class Book {
+    @Field()
+    id: string;
+
+    @Field()
+    title: string;
+
+    @Field()
+    author: string;
+
+    @Field()
+    createdAt: Date;
+}
+```
+---
+
+#### `books.service.ts`
+```bash
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateBookInput } from './dto/create-book.input';
+import { UpdateBookInput } from './dto/update-book.input';
+
+@Injectable()
+export class BooksService {
+    constructor(private prisma: PrismaService) {}
+
+    create(data: CreateBookInput) {
+        return this.prisma.book.create({ data });
+    }
+
+    findAll() {
+        return this.prisma.book.findMany();
+    }
+
+    findOne(id: string) {
+        return this.prisma.book.findUnique({
+            where: { id }
+        })
+    }
+
+    update(data: UpdateBookInput) {
+        return this.prisma.book.update({
+            where: { id: data.id },
+            data: {
+                title: data.title,
+                author: data.author
+            }
+        })
+    }
+
+    remove(id: string) {
+        return this.prisma.book.delete({
+            where: { id }
+        })
+    }
+}
 ```
 ---
 
