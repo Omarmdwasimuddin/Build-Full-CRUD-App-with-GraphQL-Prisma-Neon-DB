@@ -104,9 +104,28 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
 >#### app.module.ts e add koro-
 <img width="1077" height="238" alt="image" src="https://github.com/user-attachments/assets/29e28f89-ad93-4bb7-b2a6-381e2bf49bd5" />
 
-#### ``
+#### `app.module.ts`
 ```bash
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { PrismaModule } from './prisma/prisma.module';
+import { BooksModule } from './books/books.module';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
 
+@Module({
+  imports: [ GraphQLModule.forRoot<ApolloDriverConfig>({
+    driver: ApolloDriver,
+    autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+    sortSchema: true,
+    playground: true,
+  }), PrismaModule, BooksModule],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
 ```
 ---
 
