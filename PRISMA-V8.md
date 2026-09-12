@@ -78,13 +78,14 @@ export class AppModule {}
 #### `create-book.input.ts`
 ```bash
 import { InputType, Field } from "@nestjs/graphql";
+
 @InputType()
 export class CreateBookInput {
     @Field()
-    title: string;
+    title!: string;
 
     @Field()
-    author: string;
+    author!: string;
 }
 ```
 ---
@@ -94,10 +95,11 @@ export class CreateBookInput {
 ```bash
 import { InputType, Field, PartialType } from "@nestjs/graphql";
 import { CreateBookInput } from "./create-book.input";
+
 @InputType()
 export class UpdateBookInput extends PartialType(CreateBookInput) {
     @Field()
-    id: string;
+    id!: string;
 }
 ```
 ---
