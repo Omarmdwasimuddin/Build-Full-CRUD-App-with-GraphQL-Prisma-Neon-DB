@@ -96,10 +96,10 @@ import { InputType, Field } from "@nestjs/graphql";
 @InputType()
 export class CreateBookInput {
     @Field()
-    title: string;
+    title!: string;
 
     @Field()
-    author: string;
+    author!: string;
 }
 ```
 ---
@@ -112,7 +112,7 @@ import { CreateBookInput } from "./create-book.input";
 @InputType()
 export class UpdateBookInput extends PartialType(CreateBookInput) {
     @Field()
-    id: string;
+    id!: string;
 }
 ```
 ---
@@ -157,16 +157,16 @@ import { ObjectType, Field } from "@nestjs/graphql";
 @ObjectType()
 export class Book {
     @Field()
-    id: string;
+    id!: string;
 
     @Field()
-    title: string;
+    title!: string;
 
     @Field()
-    author: string;
+    author!: string;
 
     @Field()
-    createdAt: Date;
+    createdAt!: Date;
 }
 ```
 ---
