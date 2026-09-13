@@ -161,43 +161,34 @@ export class Book {
 #### `books.service.ts`
 ```bash
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { CreateBookInput } from './dto/create-book.input';
-import { UpdateBookInput } from './dto/update-book.input';
+import { PrismaService } from '../prisma/prisma.service.js';
+import { CreateBookInput } from './dto/create-book.input.js';
+import { UpdateBookInput } from './dto/update-book.input.js';
 
 @Injectable()
 export class BooksService {
-    constructor(private prisma: PrismaService) {}
+    constructor(private prisma: PrismaService){}
 
-    create(data: CreateBookInput) {
-        return this.prisma.book.create({ data });
+    async create(data: CreateBookInput){
+        return this.prisma.client.orm.public.Book.create(data);
     }
 
-    findAll() {
-        return this.prisma.book.findMany();
+    async findAll() {
+        return this.prisma.client.orm.public.Book.all();
     }
 
-    findOne(id: string) {
-        return this.prisma.book.findUnique({
-            where: { id }
-        })
+    async findOne(id: string){
+        return this.prisma.client.orm.public.Book.where({ id }).first();
     }
 
-    update(data: UpdateBookInput) {
-        return this.prisma.book.update({
-            where: { id: data.id },
-            data: {
-                title: data.title,
-                author: data.author
-            }
-        })
+    async update(data: UpdateBookInput){
+        return this.prisma.client.orm.public.Book.where({ id: data.id }).update(data);
     }
 
-    remove(id: string) {
-        return this.prisma.book.delete({
-            where: { id }
-        })
+    async remove(id: string){
+        return this.prisma.client.orm.public.Book.where({id}).delete();
     }
+
 }
 ```
 ---
