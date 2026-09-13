@@ -34,13 +34,13 @@ nest g resolver books
 #### `prisma.service.ts`
 ```bash
 import { Injectable } from '@nestjs/common';
-import { db } from './db';
+import { db } from './db.js';
 
 @Injectable()
 export class PrismaService {
-  get client() {
-    return db;
-  }
+    get client(){
+        return db;
+    }
 }
 ```
 ---
