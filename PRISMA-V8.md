@@ -294,8 +294,12 @@ export class BooksResolver {
 }
 
 ```
->#### main.ts e add koro---   import { Temporal } from '@js-temporal/polyfill';
+>#### main.ts e add koro---
+```bash
+import { Temporal } from '@js-temporal/polyfill';
 (globalThis as any).Temporal = Temporal;
+```
+
 #### `main.ts`
 ```bash
 import { Temporal } from '@js-temporal/polyfill';
