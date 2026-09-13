@@ -315,6 +315,23 @@ async function bootstrap() {
 bootstrap();
 
 ```
+>#### `app.controller.ts` 
+> update koro file path name er sheshe .js daw import { AppService } from './app.service.js';
+```bash
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service.js';
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get()
+  getHello(): string {
+    return this.appService.getHello();
+  }
+}
+```
+
 >## NOTE: jekono file import korte gele file name er sheshe .js add korte hobe.
 ---
 
