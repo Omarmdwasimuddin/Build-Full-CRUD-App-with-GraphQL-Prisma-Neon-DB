@@ -51,17 +51,17 @@ export class PrismaService {
 #### `app.module.ts`
 ```bash
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AppController } from './app.controller.js';
+import { AppService } from './app.service.js';
 import { ConfigModule } from '@nestjs/config';
-import { PrismaModule } from './prisma/prisma.module';
-import { BooksModule } from './books/books.module';
+import { PrismaModule } from './prisma/prisma.module.js';
+import { BooksModule } from './books/books.module.js';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 
 @Module({
-  imports: [ ConfigModule.forRoot({ isGlobal: true }), GraphQLModule.forRoot<ApolloDriverConfig>({
+  imports: [ConfigModule.forRoot({ isGlobal: true }), GraphQLModule.forRoot<ApolloDriverConfig>({
     driver: ApolloDriver,
     autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     sortSchema: true,
@@ -94,7 +94,7 @@ export class CreateBookInput {
 #### `update-book.input.ts`
 ```bash
 import { InputType, Field, PartialType } from "@nestjs/graphql";
-import { CreateBookInput } from "./create-book.input";
+import { CreateBookInput } from "./create-book.input.js";
 
 @InputType()
 export class UpdateBookInput extends PartialType(CreateBookInput) {
@@ -109,7 +109,7 @@ export class UpdateBookInput extends PartialType(CreateBookInput) {
 #### `prisma.module.ts`
 ```bash
 import { Module } from '@nestjs/common';
-import { PrismaService } from './prisma.service';
+import { PrismaService } from './prisma.service.js';
 
 @Module({
   providers: [PrismaService],
@@ -124,9 +124,9 @@ export class PrismaModule {}
 #### `books.module.ts`
 ```bash
 import { Module } from '@nestjs/common';
-import { BooksService } from './books.service';
-import { BooksResolver } from './books.resolver';
-import { PrismaModule } from 'src/prisma/prisma.module';
+import { BooksService } from './books.service.js';
+import { BooksResolver } from './books.resolver.js';
+import { PrismaModule } from '../prisma/prisma.module.js';
 
 @Module({
   imports: [PrismaModule],
