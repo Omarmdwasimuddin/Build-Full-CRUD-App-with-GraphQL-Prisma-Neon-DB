@@ -246,6 +246,8 @@ export class BooksResolver {
 ```
 ---
 
+>#### package.json file e "type": "module", hote hobe.
+
 >#### tsconfig.json file update korte hobe
 ```bash
 {
@@ -290,6 +292,23 @@ export class BooksResolver {
     ]
   }
 }
+
+```
+>#### main.ts e add koro---   import { Temporal } from '@js-temporal/polyfill';
+(globalThis as any).Temporal = Temporal;
+#### `main.ts`
+```bash
+import { Temporal } from '@js-temporal/polyfill';
+(globalThis as any).Temporal = Temporal;
+
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module.js';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  await app.listen(process.env.PORT ?? 3000);
+}
+bootstrap();
 
 ```
 ---
