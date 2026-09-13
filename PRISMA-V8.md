@@ -315,6 +315,7 @@ async function bootstrap() {
 bootstrap();
 
 ```
+>## NOTE: jekono file import korte gele file name er sheshe .js add korte hobe.
 ---
 
 >#### localhost:3000/graphql
