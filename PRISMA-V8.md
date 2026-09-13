@@ -246,6 +246,54 @@ export class BooksResolver {
 ```
 ---
 
+>#### tsconfig.json file update korte hobe
+```bash
+{
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2022",
+    // remove this line entirely — it's implied/default under NodeNext and is what's conflicting:
+    // "resolvePackageJsonExports": true,
+    ...
+  }
+}
+```
+#### `tsconfig.json`
+```bash
+{
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "resolvePackageJsonExports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2022",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "noFallthroughCasesInSwitch": false,
+    "resolveJsonModule": true,
+    "types": [
+      "node"
+    ]
+  }
+}
+
+```
+---
+
 >#### localhost:3000/graphql
 
 ```bash
