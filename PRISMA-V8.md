@@ -352,6 +352,7 @@ export class BooksResolver {
 **সবচেয়ে গুরুত্বপূর্ণ দুইটা field:**
 - `"module": "NodeNext"` — TypeScript-কে বলছে output code Node.js-এর নতুন ESM/CommonJS হাইব্রিড resolution rule মেনে জেনারেট করতে
 - `"moduleResolution": "NodeNext"` — import path resolve করার নিয়মও একই standard মেনে চলবে
+- `"target": "ES2022"` — compiled JavaScript কোন ECMAScript version-এ output হবে সেটা ঠিক করে দেয়। এটাও গুরুত্বপূর্ণ কারণ Prisma v8-এর নতুন client Temporal API-এর মতো আধুনিক feature ব্যবহার করে, যেটা পুরনো target (যেমন ES2020 বা তার আগের) দিয়ে ঠিকভাবে কাজ নাও করতে পারে — তাই ES2022 বা তার পরের target রাখা নিরাপদ
 
 ### `main.ts`-এ Temporal Polyfill
 
