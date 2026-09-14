@@ -182,7 +182,8 @@ export class BooksService {
     }
 
     async update(data: UpdateBookInput){
-        return this.prisma.client.orm.public.Book.where({ id: data.id }).update(data);
+        const { id, ...updateData } = data;
+        return this.prisma.client.orm.public.Book.where({ id }).update(updateData);
     }
 
     async remove(id: string){
