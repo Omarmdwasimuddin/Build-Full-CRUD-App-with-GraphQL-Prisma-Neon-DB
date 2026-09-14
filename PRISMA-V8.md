@@ -246,8 +246,7 @@ export class BooksResolver {
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "target": "ES2022",
-    // remove this line entirely — it's implied/default under NodeNext and is what's conflicting:
-    // "resolvePackageJsonExports": true,
+   
     ...
   }
 }
